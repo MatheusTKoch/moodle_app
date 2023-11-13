@@ -86,6 +86,23 @@ const submit = () => {
                 <InputError class="mt-2" :message="form.errors.password_confirmation" />
             </div>
 
+            <div class="mt-4">
+                <InputLabel for="user_type" value="Informe seu tipo de usuário:" />
+                    <TextInput
+                        id="aluno"
+                        type="radio"
+                        name="user_type"
+                        required />
+                        Aluno
+                    <br/>
+                    <TextInput
+                        id="professor"
+                        type="radio"
+                        name="user_type"
+                        />
+                        Professor
+            </div>
+
             <div class="flex items-center justify-end mt-4">
                 <Link
                     :href="route('login')"

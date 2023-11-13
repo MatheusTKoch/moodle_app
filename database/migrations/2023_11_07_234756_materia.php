@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('materias', function(Blueprint $table) {
             $table->id();
             $table->string('nome');
+            $table->foreignId('materia_id')->constrained(
+                table: 'materias', indexName: 'materias_prova_id'
+            );
         });
     }
 
@@ -22,6 +25,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::drop('materias');
+        Schema::table('provas', function(Blueprint $table) {
+                $table->dropForeign('materias_prova_id_foreign');
+        });
+        Schema::dropIfExists('materias');
     }
 };

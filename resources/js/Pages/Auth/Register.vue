@@ -103,6 +103,21 @@ const submit = () => {
                         Professor
             </div>
 
+            <div class="mt-4">
+                <InputLabel for="address" value="Endereco" />
+
+                <TextInput
+                    id="address"
+                    type="text"
+                    class="mt-1 block w-full"
+                    v-model="form.address"
+                    required
+                    autocomplete="address"
+                />
+
+                <InputError class="mt-2" :message="form.errors.password_confirmation" />
+            </div>
+
             <div class="flex items-center justify-end mt-4">
                 <Link
                     :href="route('login')"

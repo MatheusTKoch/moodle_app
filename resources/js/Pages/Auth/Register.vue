@@ -11,7 +11,12 @@ const form = useForm({
     email: '',
     password: '',
     password_confirmation: '',
+    user_type: document.querySelector('input[name="user_type"]:checked'),
+    address: ''
 });
+
+
+var typeUser = '';
 
 const submit = () => {
     form.post(route('register'), {
@@ -88,10 +93,12 @@ const submit = () => {
 
             <div class="mt-4">
                 <InputLabel for="user_type" value="Informe seu tipo de usuário:" />
+                    <div id="user_type">
                     <TextInput
                         id="aluno"
                         type="radio"
                         name="user_type"
+                        v-model="typeUser"
                         required />
                         Aluno
                     <br/>
@@ -99,8 +106,11 @@ const submit = () => {
                         id="professor"
                         type="radio"
                         name="user_type"
+                        v-model="typeUser"
+                        required
                         />
                         Professor
+                    </div>
             </div>
 
             <div class="mt-4">

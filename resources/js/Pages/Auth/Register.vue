@@ -11,18 +11,17 @@ const form = useForm({
     email: '',
     password: '',
     password_confirmation: '',
-    user_type: document.querySelector('input[name="user_type"]:checked'),
+    user_type: '',
     address: ''
 });
-
-
-var typeUser = '';
 
 const submit = () => {
     form.post(route('register'), {
         onFinish: () => form.reset('password', 'password_confirmation'),
     });
 };
+
+
 </script>
 
 <template>
@@ -92,25 +91,23 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="user_type" value="Informe seu tipo de usuário:" />
-                    <div id="user_type">
+                <InputLabel value="Informe seu tipo de usuário:" />
                     <TextInput
-                        id="aluno"
+                        value="aluno"
                         type="radio"
                         name="user_type"
-                        v-model="typeUser"
+                        v-model="form.user_type"
                         required />
                         Aluno
                     <br/>
                     <TextInput
-                        id="professor"
+                        value="professor"
                         type="radio"
                         name="user_type"
-                        v-model="typeUser"
+                        v-model="form.user_type"
                         required
                         />
                         Professor
-                    </div>
             </div>
 
             <div class="mt-4">

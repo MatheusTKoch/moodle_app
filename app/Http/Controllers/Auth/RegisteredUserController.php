@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
+use App\Models\Aluno;
+use App\Models\Professor;
 
 class RegisteredUserController extends Controller
 {
@@ -29,10 +31,16 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request, Aluno $aluno, Professor $professor): RedirectResponse
     {
 
-        dd($request);
+        if($request->user_type = "aluno") {
+            dd('Aluno');
+        } else {
+            dd('Professor');
+        }
+
+        dd($request->user_type);
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,

@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('nome');
             $table->string('email');
             $table->string('endereco');
+            $table->foreignId('user_id')->constrained(
+                table: 'users', indexName: 'aluno_user_id'
+            );
         });
     }
 

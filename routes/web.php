@@ -29,6 +29,10 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/provas', function () {
+    return Inertia::render('Provas');
+})->middleware(['auth', 'verified'])->name('provas');
+
 Route::get('/materias', function () {
     return Inertia::render('Materias');
 })->middleware(['auth', 'verified'])->name('materias');

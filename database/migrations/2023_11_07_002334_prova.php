@@ -18,7 +18,7 @@ return new class extends Migration
                 table: 'alunos', indexName: 'aluno_prova_id'
             );
             $table->foreignId('professor_id')->constrained(
-                table: 'professores', indexName: 'professor_prova_id'
+                table: 'profs', indexName: 'professor_prova_id'
             );
         });
     }

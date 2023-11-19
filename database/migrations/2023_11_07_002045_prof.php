@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('professores', function(Blueprint $table) {
+        Schema::create('profs', function(Blueprint $table) {
             $table->id();
             $table->string('nome');
             $table->string('email');
@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained(
                 table: 'users', indexName: 'professor_user_id'
             );
+            $table->timestamps();
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::drop('professores');
+        Schema::drop('profs');
     }
 };

@@ -14,7 +14,7 @@ use Illuminate\Validation\Rules;
 use Inertia\Inertia;
 use Inertia\Response;
 use App\Models\Aluno;
-use App\Models\Professor;
+use App\Models\Prof;
 
 class RegisteredUserController extends Controller
 {
@@ -31,20 +31,14 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request, Aluno $aluno, Professor $professor): RedirectResponse
+    public function store(Request $request, Aluno $aluno, Prof $prof): RedirectResponse
     {
 
-        if($request->user_type = "aluno") {
-            dd('Aluno');
-        } else {
-            dd('Professor');
-        }
 
-        dd($request->user_type);
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()]
         ]);
 
         $user = User::create([
@@ -54,6 +48,24 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
+
+        if($request->user_type == "professor") {
+            $prof = Prof::create([
+                'nome' => $request->name,
+                'email' => $request->email,
+                'endereco' => $request->address,
+                'user_id' => $user->id
+            ]);
+        }
+
+        if($request->user_type == "aluno") {
+            $aluno = Aluno::create([
+                'nome' => $request->name,
+                'email' => $request->email,
+                'endereco' => $request->address,
+                'user_id' => $user->id
+            ]);
+        }
 
         Auth::login($user);
 

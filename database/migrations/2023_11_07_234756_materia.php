@@ -17,6 +17,10 @@ return new class extends Migration
             $table->foreignId('materia_id')->constrained(
                 table: 'materias', indexName: 'materias_prova_id'
             );
+            $table->foreignId('user_id')->constrained(
+                table: 'users', indexName: 'materia_user_id'
+            );
+            $table->timestamps();
         });
     }
 

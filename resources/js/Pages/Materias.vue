@@ -10,6 +10,11 @@ const form = useForm({
     materias: ''
 });
 
+const submit = () => {
+    form.post(route('register'), {
+        onFinish: () => form.reset('password', 'password_confirmation'),
+    });
+};
 
 </script>
 
@@ -21,8 +26,9 @@ const form = useForm({
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">Matérias</h2>
         </template>
 
-        <form @submit.prevent="submit">
-            <InputLabel for="materias" value="Matérias" />
+        <form @submit.prevent="submit"  class="flex justify-center">
+            <div class="my-2">
+            <InputLabel for="materias" value="Cadastre suas matérias:" />
 
             <div class="inline-flex">
                 <TextInput
@@ -35,7 +41,7 @@ const form = useForm({
                     autocomplete="materias"
                 />
 
-                <InputError class="mt-2" :message="form.errors.email" />
+                <InputError class="mt-2" :message="form.errors.materias" />
 
                 <div class="flex items-center">
                     <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
@@ -43,6 +49,7 @@ const form = useForm({
                     </PrimaryButton>
                 </div>
             </div>
+        </div>
         </form>
     </AuthenticatedLayout>
 </template>

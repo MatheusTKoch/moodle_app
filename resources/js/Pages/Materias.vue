@@ -11,15 +11,13 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('register'), {
-        onFinish: () => form.reset('password', 'password_confirmation'),
-    });
+    form.post(route('materia'));
 };
 
 </script>
 
 <template>
-    <Head title="Dashboard" />
+    <Head title="Materias" />
 
     <AuthenticatedLayout>
         <template #header>

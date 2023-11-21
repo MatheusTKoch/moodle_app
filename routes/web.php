@@ -29,13 +29,13 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/provas', function () {
+Route::get('/prova', function () {
     return Inertia::render('Provas');
-})->middleware(['auth', 'verified'])->name('provas');
+})->middleware(['auth', 'verified'])->name('prova');
 
-Route::get('/materias', function () {
+Route::get('/materia', function () {
     return Inertia::render('Materias');
-})->middleware(['auth', 'verified'])->name('materias');
+})->middleware(['auth', 'verified'])->name('materia');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

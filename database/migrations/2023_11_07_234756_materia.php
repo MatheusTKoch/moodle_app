@@ -14,13 +14,16 @@ return new class extends Migration
         Schema::create('materias', function(Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->foreignId('materia_id')->constrained(
-                table: 'materias', indexName: 'materias_prova_id'
-            );
             $table->foreignId('user_id')->constrained(
                 table: 'users', indexName: 'materia_user_id'
             );
             $table->timestamps();
+        });
+
+        Schema::table('provas', function(Blueprint $table) {
+            $table->foreignId('materia_id')->constrained(
+                table: 'materias', indexName: 'materia_prova_id'
+            );
         });
     }
 

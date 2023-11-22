@@ -30,16 +30,15 @@ class MateriaController extends Controller
      */
     public function store(Request $request, Materia $materia)
     {
-        dd($materia);
-
-        $request->validate([
-            'nome' => 'required|string|max:100',
-            'user_id' => 'required',
-        ]);
 
         $materia = Materia::create([
             'nome' => $request->materias,
             'user_id' => $request->user()->id
+        ]);
+
+        $request->validate([
+            'nome' => 'required|string|max:100',
+            'user_id' => 'required',
         ]);
 
 

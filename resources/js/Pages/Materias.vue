@@ -11,7 +11,9 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('materia'));
+    form.post(route('materia'), {
+        onSuccess: () => form.reset('materias')
+    });
 };
 
 </script>
@@ -39,7 +41,7 @@ const submit = () => {
                     autocomplete="materias"
                 />
 
-                <InputError class="mt-2" :message="form.errors.materias" />
+                <InputError class="mt-2" :message="form.errors.materias"/>
 
                 <div class="flex items-center">
                     <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">

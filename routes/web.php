@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MateriaController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -33,9 +34,23 @@ Route::get('/prova', function () {
     return Inertia::render('Provas');
 })->middleware(['auth', 'verified'])->name('prova');
 
-Route::get('/materia', function () {
-    return Inertia::render('Materias');
-})->middleware(['auth', 'verified'])->name('materia');
+// Route::get('/materia', function () {
+//     return Inertia::render('Materias');
+// })->middleware(['auth', 'verified'])->name('materia');
+
+// Route::post('/materia', function () {
+//     return Inertia::render('Materias');
+// })->middleware(['auth', 'verified'])->name('materia');
+
+// Route::middleware(['auth', 'verified'])->group(function() {
+//     Route::get('/materia', [MateriaController::class, 'index'])->name('materia.index');
+//     Route::post('/materia', [MateriaController::class, 'store'])->name('materia.store');
+// });
+
+Route::controller(MateriaController::class)->group(function() {
+    Route::get('/materia', 'index')->name('materia');
+    Route::post('/materia', 'store')->name('materia');
+})->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

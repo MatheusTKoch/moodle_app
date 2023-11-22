@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Materia;
+use Inertia\Inertia;
 
 class MateriaController extends Controller
 {
@@ -13,7 +14,7 @@ class MateriaController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Materias');
     }
 
     /**
@@ -21,7 +22,7 @@ class MateriaController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Auth/Materias');
+        return Inertia::render('Materias');
     }
 
     /**
@@ -29,17 +30,19 @@ class MateriaController extends Controller
      */
     public function store(Request $request, Materia $materia)
     {
-        dd($request);
+        dd($materia);
 
         $request->validate([
             'nome' => 'required|string|max:100',
             'user_id' => 'required',
         ]);
 
-        Materia::create([
+        $materia = Materia::create([
             'nome' => $request->materias,
-            // 'user_id' => $request
+            'user_id' => $request->user()->id
         ]);
+
+
     }
 
     /**

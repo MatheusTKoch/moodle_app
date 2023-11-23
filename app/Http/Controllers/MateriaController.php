@@ -12,9 +12,11 @@ class MateriaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Materia $materia)
     {
-        return Inertia::render('Materias');
+        return Inertia::render('Materias', [
+            'materias' => Materia::all()
+        ]);
     }
 
     /**
@@ -30,7 +32,6 @@ class MateriaController extends Controller
      */
     public function store(Request $request, Materia $materia)
     {
-
         $materia = Materia::create([
             'nome' => $request->materias,
             'user_id' => $request->user()->id

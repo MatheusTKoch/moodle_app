@@ -16,6 +16,9 @@ const submit = () => {
     });
 };
 
+const prop = defineProps({
+    materias: ''
+});
 </script>
 
 <template>
@@ -54,28 +57,15 @@ const submit = () => {
 
         <br>
 
-        <ul class="list-disc">
+        <ul class="list-disc" v-for="(mat, index) in materias">
             <li>
-                <div class="flex justify-center p-4">
+                <div class="flex justify-center p-4" :key="index">
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="p-5 text-gray-900">You're logged in!</div>
+                        <div class="p-5 text-gray-900">{{ mat.nome }} - {{ mat.user_id }}</div>
                     </div>
                 </div>
             </li>
-            <li>
-                <div class="flex justify-center p-4">
-                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="p-5 text-gray-900">You're logged in!</div>
-                    </div>
-                </div>
-            </li>
-            <li>
-                <div class="flex justify-center p-4">
-                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="p-5 text-gray-900">You're logged in!</div>
-                    </div>
-                </div>
-            </li>
+
         </ul>
     </AuthenticatedLayout>
 </template>

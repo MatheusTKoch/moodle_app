@@ -6,16 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Materia;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 class MateriaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Materia $materia)
+    public function index(Request $request, Materia $materia)
     {
         return Inertia::render('Materias', [
-            'materias' => Materia::all()
+            'materias' => Materia::all()->where('user_id', '=', Auth::id())
         ]);
     }
 

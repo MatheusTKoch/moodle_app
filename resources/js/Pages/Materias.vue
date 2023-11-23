@@ -61,7 +61,7 @@ const prop = defineProps({
             <li>
                 <div class="flex justify-center p-4" :key="index">
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="p-5 text-gray-900">{{ mat.nome }} - {{ mat.user_id }}</div>
+                        <div class="p-5 text-gray-900">{{ mat.nome }}</div>
                     </div>
                 </div>
             </li>

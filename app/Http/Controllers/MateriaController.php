@@ -16,7 +16,7 @@ class MateriaController extends Controller
     public function index(Request $request, Materia $materia)
     {
         return Inertia::render('Materias', [
-            'materias' => Materia::all()->where('user_id', '=', Auth::id())
+            'materias' => Materia::get()->where('user_id', Auth::id())
         ]);
     }
 

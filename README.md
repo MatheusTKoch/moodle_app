@@ -33,4 +33,34 @@ Para executar o Moodle App localmente, siga estas etapas:
    ```bash
     composer install
     npm install && npm run dev
+3. Configure o banco de dados:
+    Crie um novo banco de dados MySQL para o aplicativo.
+    Copie o arquivo .env.example para .env e atualize a configuração do banco de dados.
+    Execute as migrações e populadores do banco de dados:
+   ```bash
+   php artisan migrate --seed
+4. Gere a chave da aplicação:
+   ```bash
+   php artisan key:generate
+5. Inicie o servidor de desenvolvimento:
+   ```bash
+   php artisan serve
 
+Acesse http://localhost:8000 no seu navegador para acessar o Moodle App.
+
+## Uso
+
+# Estudante
+
+1. Registre-se para uma conta.
+2. Faça login e vá para a seção "Enviar Tarefa".
+3. Envie seu arquivo de tarefa e especifique a área para revisão.
+# Professor
+
+1. Registre-se para uma conta.
+2. Faça login e vá para a seção "Avaliar Tarefas".
+3. Avalie as tarefas enviadas e especifique as áreas para as quais você está licenciado para dar notas.
+
+## Licença
+
+Este projeto está licenciado sob a Licença MIT.

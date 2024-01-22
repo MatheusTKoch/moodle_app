@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Prova;
 
 class ProvaController extends Controller
 {
@@ -22,15 +23,23 @@ class ProvaController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('provas');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Prova $provas)
     {
-        //
+        $materia = Materia::create([
+            'aluno_id' => $request->user()->id,
+            'materia_id' => $request
+        ]);
+
+        $request->validate([
+            'aluno_id' => 'required',
+            'materia_id' => 'required',
+        ]);
     }
 
     /**

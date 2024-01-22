@@ -12,7 +12,9 @@ class ProvaController extends Controller
      */
     public function index()
     {
-
+        return Inertia::render('Provas', [
+            'provas' => Materia::get()->where('user_id', Auth::id())
+        ]);
     }
 
     /**

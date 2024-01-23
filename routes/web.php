@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MateriaController;
+use App\Http\Controllers\ProvaController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -30,9 +31,9 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/prova', function () {
-    return Inertia::render('Provas');
-})->middleware(['auth', 'verified'])->name('prova');
+// Route::get('/prova', function () {
+//     return Inertia::render('Provas');
+// })->middleware(['auth', 'verified'])->name('prova');
 
 // Route::get('/materia', function () {
 //     return Inertia::render('Materias');
@@ -50,6 +51,11 @@ Route::get('/prova', function () {
 Route::controller(MateriaController::class)->group(function() {
     Route::get('/materia', 'index')->name('materia');
     Route::post('/materia', 'store')->name('materia');
+})->middleware(['auth', 'verified']);
+
+Route::controller(ProvaController::class)->group(function() {
+    Route::get('/prova', 'index')->name('prova');
+    Route::post('/prova', 'store')->name('prova');
 })->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {

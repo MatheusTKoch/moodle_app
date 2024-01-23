@@ -9,12 +9,22 @@ import { Head, useForm } from '@inertiajs/vue3';
 const form = useForm({
     provaDesc: '',
     materiaDesc: ''
-
 })
+
+const submit = () => {
+    form.post(route('prova'), {
+        onSuccess: () => form.reset('provas')
+    });
+};
+
+const props = defineProps({
+    provaDesc: '',
+    materiaDesc: ''
+});
 </script>
 
 <template>
-    <Head title="Dashboard" />
+    <Head title="Provas" />
 
     <AuthenticatedLayout>
         <template #header>
@@ -31,42 +41,42 @@ const form = useForm({
                 <div class="h-5"></div>
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 float">
-                        <div class="flex justify-center">
-                        <InputLabel for="provasDesc" value="Título da Prova:" />
+                        <form @submit.prevent="submit">
+                            <InputLabel for="provasDesc" value="Título da Prova:" />
 
-                        <TextInput
-                            id="provasDesc"
-                            type="text"
-                            class="mt-1 block h-8 w-3/4"
-                            v-model="form.provaDesc"
-                            required
-                            autofocus
-                            autocomplete="Descrição das provas"
-                        />
+                            <TextInput
+                                id="provasDesc"
+                                type="text"
+                                class="mt-1 block h-8 w-2/4"
+                                v-model="form.provaDesc"
+                                required
+                                autofocus
+                                autocomplete="Descrição das provas"
+                            />
 
-                        <div class="h-2"></div>
+                            <div class="h-2"></div>
 
-                        <InputLabel for="materiaDesc" value="Matérias da Prova:" />
+                            <InputLabel for="materiaDesc" value="Matéria:" />
 
-                        <TextInput
-                            id="materiaDesc"
-                            type="text"
-                            class="mt-1 block h-8 w-3/4"
-                            v-model="form.materiaDesc"
-                            required
-                            autofocus
-                            autocomplete="Descrição das provas"
-                        />
-                        </div>
+                            <TextInput
+                                id="materiaDesc"
+                                type="text"
+                                class="mt-1 block h-8 w-2/4"
+                                v-model="form.materiaDesc"
+                                required
+                                autofocus
+                                autocomplete="Descrição das provas"
+                            />
 
-                        <InputError class="mt-2" :message="form.errors.provas"/>
+                            <InputError class="mt-2" :message="form.errors.provas"/>
 
-                        <div class="h-3"></div>
-                        <div class="flex items-center">
-                            <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                Cadastrar Prova
-                            </PrimaryButton>
-                        </div>
+                            <div class="h-3"></div>
+                            <div class="flex items-center">
+                                <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                                    Cadastrar Prova
+                                </PrimaryButton>
+                            </div>
+                    </form>
                     </div>
                 </div>
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Prova;
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 class ProvaController extends Controller
 {
@@ -14,7 +16,7 @@ class ProvaController extends Controller
     public function index()
     {
         return Inertia::render('Provas', [
-            'provas' => Materia::get()->where('user_id', Auth::id())
+            'provas' => Prova::get()->where('user_id', Auth::id())
         ]);
     }
 
@@ -31,9 +33,12 @@ class ProvaController extends Controller
      */
     public function store(Request $request, Prova $provas)
     {
+        dd($request);
+
         $materia = Materia::create([
             'aluno_id' => $request->user()->id,
-            'materia_id' => $request
+            ''
+            'materia_id' => $request->materiaDesc
         ]);
 
         $request->validate([

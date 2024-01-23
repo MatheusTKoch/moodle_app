@@ -1,6 +1,16 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
+import InputLabel from '@/Components/InputLabel.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import TextInput from '@/Components/TextInput.vue';
+import InputError from '@/Components/InputError.vue';
+import { Head, useForm } from '@inertiajs/vue3';
+
+const form = useForm({
+    provaDesc: '',
+    materiaDesc: ''
+
+})
 </script>
 
 <template>
@@ -18,7 +28,50 @@ import { Head } from '@inertiajs/vue3';
                         correção ou verifique as provas já enviadas!
                     </div>
                 </div>
-                <h2 class="font-semibold py-12 float align-center text-xl text-gray-800 leading-tight">Suas Provas</h2>
+                <div class="h-5"></div>
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 text-gray-900 float">
+                        <div class="flex justify-center">
+                        <InputLabel for="provasDesc" value="Título da Prova:" />
+
+                        <TextInput
+                            id="provasDesc"
+                            type="text"
+                            class="mt-1 block h-8 w-3/4"
+                            v-model="form.provaDesc"
+                            required
+                            autofocus
+                            autocomplete="Descrição das provas"
+                        />
+
+                        <div class="h-2"></div>
+
+                        <InputLabel for="materiaDesc" value="Matérias da Prova:" />
+
+                        <TextInput
+                            id="materiaDesc"
+                            type="text"
+                            class="mt-1 block h-8 w-3/4"
+                            v-model="form.materiaDesc"
+                            required
+                            autofocus
+                            autocomplete="Descrição das provas"
+                        />
+                        </div>
+
+                        <InputError class="mt-2" :message="form.errors.provas"/>
+
+                        <div class="h-3"></div>
+                        <div class="flex items-center">
+                            <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                                Cadastrar Prova
+                            </PrimaryButton>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="font-semibold py-12 flex justify-center text-xl text-gray-800 leading-tight">Suas Provas</h2>
+
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 float">
                         <table class="table-auto">

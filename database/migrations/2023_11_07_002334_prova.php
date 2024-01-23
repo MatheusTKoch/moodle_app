@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('provas', function(Blueprint $table) {
             $table->id();
+            $table->string('descricao');
             $table->integer('nota');
             $table->foreignId('aluno_id')->constrained(
                 table: 'alunos', indexName: 'aluno_prova_id'
@@ -20,6 +21,7 @@ return new class extends Migration
             $table->foreignId('professor_id')->constrained(
                 table: 'profs', indexName: 'professor_prova_id'
             );
+            $table->timestamps();
         });
     }
 

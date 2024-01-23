@@ -9,5 +9,5 @@ class Prova extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nota', 'aluno_id', 'professor_id', 'materia_id'];
+    protected $fillable = ['nota', 'descricao', 'aluno_id', 'professor_id', 'materia_id'];
 }

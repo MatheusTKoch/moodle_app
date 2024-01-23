@@ -31,18 +31,18 @@ class ProvaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Prova $provas)
+    public function store(Request $request, Prova $prova)
     {
-        dd($request);
 
-        $materia = Materia::create([
+        $prova = Prova::create([
             'aluno_id' => $request->user()->id,
-            ''
+            'descricao' => $request->provaDesc,
             'materia_id' => $request->materiaDesc
         ]);
 
         $request->validate([
             'aluno_id' => 'required',
+            'descricao' => 'required|string|max:100',
             'materia_id' => 'required',
         ]);
     }

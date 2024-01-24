@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('provas', function(Blueprint $table) {
             $table->id();
             $table->string('descricao');
-            $table->integer('nota');
+            $table->integer('nota')->nullable()->default(null);
             $table->foreignId('aluno_id')->constrained(
                 table: 'alunos', indexName: 'aluno_prova_id'
             );
             $table->foreignId('professor_id')->constrained(
                 table: 'profs', indexName: 'professor_prova_id'
-            );
+            )->nullable()->default(null);
             $table->timestamps();
         });
     }

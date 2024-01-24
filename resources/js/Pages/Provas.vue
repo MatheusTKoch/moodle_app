@@ -64,10 +64,21 @@ const props = defineProps({
                                 v-model="form.materiaDesc"
                                 required
                                 autofocus
-                                autocomplete="Descrição das provas"
+                                autocomplete="Selecione a matéria"
+                            />
+
+                            <InputLabel for="inputFile" value="Arquivo da Prova:" />
+
+                            <TextInput
+                                id="inputFile"
+                                type="file"
+                                class="mt-1 block h-8 w-2/4"
+                                autofocus
+                                autocomplete="Adicione o PDF/Imagem da Prova"
                             />
 
                             <InputError class="mt-2" :message="form.errors.provas"/>
+
 
                             <div class="h-3"></div>
                             <div class="flex items-center">

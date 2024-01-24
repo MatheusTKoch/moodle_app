@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Materia;
 use App\Models\Prova;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +17,7 @@ class ProvaController extends Controller
     public function index()
     {
         return Inertia::render('Provas', [
-            'provas' => Prova::get()->where('user_id', Auth::id())
+            'materias' => Materia::get()->where('user_id', Auth::id())
         ]);
     }
 

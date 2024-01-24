@@ -18,8 +18,7 @@ const submit = () => {
 };
 
 const props = defineProps({
-    provaDesc: '',
-    materiaDesc: ''
+    materias: ''
 });
 </script>
 

@@ -8,8 +8,11 @@ import { Head, useForm } from '@inertiajs/vue3';
 
 const form = useForm({
     provaDesc: '',
-    materiaDesc: ''
+    materiaId: '',
+    fileProva: ''
 })
+
+
 
 const submit = () => {
     form.post(route('prova'), {
@@ -57,15 +60,17 @@ const props = defineProps({
 
                             <InputLabel for="materiaDesc" value="Matéria:" />
 
-                            <TextInput
+                            <select
                                 id="materiaDesc"
-                                type="text"
                                 class="mt-1 block h-8 w-2/4"
-                                v-model="form.materiaDesc"
+                                v-model="form.materiaId"
                                 required
                                 autofocus
                                 autocomplete="Selecione a matéria"
-                            />
+
+                            >
+                                <option v-for="mat in materias" :value="mat.id">{{mat.id}} - {{ mat.nome }}</option>
+                            </select>
 
                             <InputLabel for="inputFile" value="Arquivo da Prova:" />
 
@@ -73,6 +78,7 @@ const props = defineProps({
                                 id="inputFile"
                                 type="file"
                                 class="mt-1 block h-8 w-2/4"
+                                v-model="form.fileProva"
                                 autofocus
                                 autocomplete="Adicione o PDF/Imagem da Prova"
                             />

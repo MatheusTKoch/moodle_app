@@ -18,9 +18,7 @@ return new class extends Migration
             $table->foreignId('aluno_id')->constrained(
                 table: 'alunos', indexName: 'aluno_prova_id'
             );
-            $table->foreignId('professor_id')->constrained(
-                table: 'profs', indexName: 'professor_prova_id'
-            )->nullable()->default(null);
+            $table->integer('professor_id')->nullable()->default(null);
             $table->timestamps();
         });
     }
@@ -32,7 +30,6 @@ return new class extends Migration
     {
         Schema::table('provas', function(Blueprint $table) {
             $table->dropForeign('aluno_prova_id');
-            $table->dropForeign('professor_prova_id');
         });
         Schema::drop('provas');
     }

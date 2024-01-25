@@ -34,11 +34,10 @@ class ProvaController extends Controller
      */
     public function store(Request $request, Prova $prova)
     {
-
         $prova = Prova::create([
             'aluno_id' => $request->user()->id,
             'descricao' => $request->provaDesc,
-            'materia_id' => $request->materiaDesc
+            'materia_id' => $request->materiaId
         ]);
 
         $request->validate([

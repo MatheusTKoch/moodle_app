@@ -2,6 +2,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
+import SecondaryButton from '@/Components/SecondaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import InputError from '@/Components/InputError.vue';
 import { Head, useForm } from '@inertiajs/vue3';
@@ -57,15 +58,16 @@ const prop = defineProps({
 
         <br>
 
-        <ul class="list-disc" v-for="(mat, index) in materias">
-            <li>
-                <div class="flex justify-center p-4" :key="index">
-                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="p-5 text-gray-900">{{ mat.nome }}</div>
-                    </div>
-                </div>
-            </li>
-
-        </ul>
+            <div class="p-6 text-gray-900 float">
+                <ul v-for="(mat, index) in materias">
+                    <li>
+                        <div class="flex justify-center p-4" :key="index">
+                            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                                <div class="p-5 text-gray-900">{{ mat.nome }}<SecondaryButton>Deletar</SecondaryButton></div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
     </AuthenticatedLayout>
 </template>

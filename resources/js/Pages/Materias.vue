@@ -11,8 +11,8 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('materia'), {
-        onSuccess: () => form.reset('materias')
+    form.post('/materia', {
+        onSuccess: () => form.reset()
     });
 };
 
@@ -29,7 +29,7 @@ const prop = defineProps({
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">Matérias</h2>
         </template>
 
-        <form @submit.prevent="submit"  class="flex justify-center">
+        <form @submit.prevent="submit" class="flex justify-center">
             <div class="my-2">
             <InputLabel for="materias" value="Cadastre suas matérias:" />
 

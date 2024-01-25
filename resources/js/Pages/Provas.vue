@@ -15,13 +15,14 @@ const form = useForm({
 
 
 const submit = () => {
-    form.post(route('prova'), {
-        onSuccess: () => form.reset('provas')
+    form.post('/prova', {
+        onSuccess: () => form.reset()
     });
 };
 
 const props = defineProps({
-    materias: ''
+    materias: '',
+    provas: ''
 });
 </script>
 
@@ -43,7 +44,7 @@ const props = defineProps({
                 <div class="h-5"></div>
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 float">
-                        <form @submit.prevent="submit">
+                        <form @submit.prevent="submit" id="provas">
                             <InputLabel for="provasDesc" value="Título da Prova:" />
 
                             <TextInput
@@ -106,16 +107,17 @@ const props = defineProps({
                                 <th class="font-bold py-2 px-4 border-b border-l text-left">Prova</th>
                                 <th class="font-bold py-2 px-4 border-b border-l text-left">Nota</th>
                                 <th class="font-bold py-2 px-4 border-b border-l text-left">Matéria</th>
-                                <th class="font-bold py-2 px-4 border-b border-l text-left">Corrigido Por</th>
+                                <th class="font-bold py-2 px-4 border-b border-l text-left">Status</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
+                            <tbody v-for="prov in provas">
+                                {{ prov }}
+                                <!-- <tr>
                                 <td class="p-2 border-b border-l text-left">Prova 1</td>
                                 <td class="p-2 border-b border-l text-left">9.5</td>
                                 <td class="p-2 border-b border-l text-left">Historia</td>
                                 <td class="p-2 border-b border-l text-left">Professor 1</td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>

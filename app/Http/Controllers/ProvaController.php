@@ -17,7 +17,8 @@ class ProvaController extends Controller
     public function index()
     {
         return Inertia::render('Provas', [
-            'materias' => Materia::get()->where('user_id', Auth::id())
+            'materias' => Materia::get()->where('user_id', Auth::id()),
+            'provas' => Prova::get()->where('aluno_id', Auth::id())
         ]);
     }
 

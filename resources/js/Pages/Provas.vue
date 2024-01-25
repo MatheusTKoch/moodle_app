@@ -42,7 +42,7 @@ const props = defineProps({
                     </div>
                 </div>
                 <div class="h-5"></div>
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-center w-auto">
                     <div class="p-6 text-gray-900 float">
                         <form @submit.prevent="submit" id="provas">
                             <InputLabel for="provasDesc" value="Título da Prova:" />
@@ -99,25 +99,24 @@ const props = defineProps({
 
                 <h2 class="font-semibold py-12 flex justify-center text-xl text-gray-800 leading-tight">Suas Provas</h2>
 
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg flex justify-center">
                     <div class="p-6 text-gray-900 float">
                         <table class="table-auto">
                             <thead>
                                 <tr>
-                                <th class="font-bold py-2 px-4 border-b border-l text-left">Prova</th>
-                                <th class="font-bold py-2 px-4 border-b border-l text-left">Nota</th>
-                                <th class="font-bold py-2 px-4 border-b border-l text-left">Matéria</th>
-                                <th class="font-bold py-2 px-4 border-b border-l text-left">Status</th>
+                                <th class="font-bold py-2 px-4 border-t border-b border-l border-r text-left">Prova</th>
+                                <th class="font-bold py-2 px-4 border-t border-b border-l border-r text-left">Nota</th>
+                                <th class="font-bold py-2 px-4 border-t border-b border-l border-r text-left">Matéria</th>
+                                <th class="font-bold py-2 px-4 border-t border-b border-l border-r text-left">Status</th>
                                 </tr>
                             </thead>
                             <tbody v-for="prov in provas">
-                                {{ prov }}
-                                <!-- <tr>
-                                <td class="p-2 border-b border-l text-left">Prova 1</td>
-                                <td class="p-2 border-b border-l text-left">9.5</td>
-                                <td class="p-2 border-b border-l text-left">Historia</td>
-                                <td class="p-2 border-b border-l text-left">Professor 1</td>
-                                </tr> -->
+                                <tr>
+                                <td class="p-2 border-t border-b border-l border-r text-left">{{ prov.descricao }}</td>
+                                <td class="p-2 border-t border-b border-l border-r text-left">{{ prov.nota == null ? 'Sem nota' : prov.nota }}</td>
+                                <td class="p-2 border-t border-b border-l border-r text-left">{{ prov.materia_id }}</td>
+                                <td class="p-2 border-t border-b border-l border-r text-left">{{ prov.nota == null ? 'Não Avaliado' : 'Avaliado'}}</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

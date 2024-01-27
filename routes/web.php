@@ -51,7 +51,7 @@ Route::get('/dashboard', function () {
 Route::controller(MateriaController::class)->group(function() {
     Route::get('/materia', 'index')->name('materia');
     Route::post('/materia', 'store')->name('materia');
-    Route::post('/materia', 'destroy')->name('materia');
+    Route::delete('/materia', 'destroy')->name('materia');
 })->middleware(['auth', 'verified']);
 
 Route::controller(ProvaController::class)->group(function() {

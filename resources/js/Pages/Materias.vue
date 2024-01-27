@@ -17,6 +17,10 @@ const submit = () => {
     });
 };
 
+function deleteMateria(id) {
+    this.$inertia.delete(route('materias.destroy', id));
+};
+
 const prop = defineProps({
     materias: ''
 });
@@ -48,7 +52,9 @@ const prop = defineProps({
                 <InputError class="mt-2" :message="form.errors.materias"/>
 
                 <div class="flex items-center">
-                    <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                    <PrimaryButton class="ml-4"
+                    :class="{ 'opacity-25': form.processing }"
+                    :disabled="form.processing">
                         Cadastrar
                     </PrimaryButton>
                 </div>
@@ -63,7 +69,7 @@ const prop = defineProps({
                     <li>
                         <div class="flex justify-center p-4" :key="index">
                             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                                <div class="p-5 text-gray-900">{{ mat.nome }}<SecondaryButton>Deletar</SecondaryButton></div>
+                                <div class="p-5 text-gray-900">{{ mat.nome }}<SecondaryButton @click="deleteMateria()">Deletar</SecondaryButton></div>
                             </div>
                         </div>
                     </li>

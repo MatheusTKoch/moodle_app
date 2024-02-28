@@ -51,7 +51,7 @@ class MateriaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return Inertia::render('Materias');
     }
 
     /**
@@ -73,8 +73,16 @@ class MateriaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( $id)
+    public function destroy(string $id)
     {
-        Materia::find($id)->delete();
+        dd($id);
+        $materia = Materia::findOrFail();
+        $materia->delete();
+
+        if(request()->wantsJson()) {
+            return response()->json(['message' => 'Materia deletada com sucesso.']);
+        } else {
+            return redirect()->back()->with('success', 'Materia deletada com sucesso.');
+    }
     }
 }

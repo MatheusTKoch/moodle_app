@@ -6,6 +6,9 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import InputError from '@/Components/InputError.vue';
 import { Head, useForm } from '@inertiajs/vue3';
+import { usePage } from '@inertiajs/vue3';
+
+const { $inertia, route } = usePage();
 
 const form = useForm({
     materias: ''
@@ -18,8 +21,10 @@ const submit = () => {
 };
 
 function deleteMateria(id) {
-    this.$inertia.delete(route('materias.destroy', id));
-};
+    if (confirm('Tem certeza que quer deletar a materia?')) {
+        $inertia.delete(route('materia', id));
+    }
+}
 
 const prop = defineProps({
     materias: ''
@@ -65,11 +70,11 @@ const prop = defineProps({
         <br>
 
             <div class="p-6 text-gray-900 float">
-                <ul v-for="(mat, index) in materias">
+                <ul v-for="(mat, index) in materias" :key="index">
                     <li>
-                        <div class="flex justify-center p-4" :key="index">
+                        <div class="flex justify-center p-4">
                             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                                <div class="p-5 text-gray-900">{{ mat.nome }}<SecondaryButton @click="deleteMateria()">Deletar</SecondaryButton></div>
+                                <div class="p-5 text-gray-900">{{ mat.nome }}<SecondaryButton @click="deleteMateria(mat.id)">Deletar</SecondaryButton></div>
                             </div>
                         </div>
                     </li>

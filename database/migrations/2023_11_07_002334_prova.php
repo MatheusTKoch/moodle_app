@@ -19,6 +19,7 @@ return new class extends Migration
                 table: 'alunos', indexName: 'aluno_prova_id'
             );
             $table->integer('professor_id')->nullable()->default(null);
+            $table->string('caminho_arquivo');
             $table->timestamps();
         });
     }

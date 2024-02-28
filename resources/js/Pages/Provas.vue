@@ -107,6 +107,7 @@ const props = defineProps({
                                 <th class="font-bold py-2 px-4 border-t border-b border-l border-r text-left">Prova</th>
                                 <th class="font-bold py-2 px-4 border-t border-b border-l border-r text-left">Nota</th>
                                 <th class="font-bold py-2 px-4 border-t border-b border-l border-r text-left">Matéria</th>
+                                <th class="font-bold py-2 px-4 border-t border-b border-l border-r text-left">Nome do arquivo</th>
                                 <th class="font-bold py-2 px-4 border-t border-b border-l border-r text-left">Status</th>
                                 </tr>
                             </thead>
@@ -115,6 +116,7 @@ const props = defineProps({
                                 <td class="p-2 border-t border-b border-l border-r text-left">{{ prov.descricao }}</td>
                                 <td class="p-2 border-t border-b border-l border-r text-left">{{ prov.nota == null ? 'Sem nota' : prov.nota }}</td>
                                 <td class="p-2 border-t border-b border-l border-r text-left">{{ prov.materia_id }}</td>
+                                <td class="p-2 border-t border-b border-l border-r text-left">{{ prov.caminho_arquivo.substr(12) }}</td>
                                 <td class="p-2 border-t border-b border-l border-r text-left">{{ prov.nota == null ? 'Não Avaliado' : 'Avaliado'}}</td>
                                 </tr>
                             </tbody>

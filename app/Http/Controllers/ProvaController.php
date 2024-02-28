@@ -38,13 +38,15 @@ class ProvaController extends Controller
         $prova = Prova::create([
             'aluno_id' => $request->user()->id,
             'descricao' => $request->provaDesc,
-            'materia_id' => $request->materiaId
+            'materia_id' => $request->materiaId,
+            'caminho_arquivo' =>$request->fileProva
         ]);
 
         $request->validate([
             'aluno_id' => 'required',
             'descricao' => 'required|string|max:100',
             'materia_id' => 'required',
+            'caminho_arquivo' => 'string'
         ]);
     }
 

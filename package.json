@@ -4,7 +4,8 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "watch": "vite build --watch"
+        "watch": "vite build --watch",
+        "start": "vite && vite build --watch"
     },
     "devDependencies": {
         "@inertiajs/vue3": "^1.0.0",

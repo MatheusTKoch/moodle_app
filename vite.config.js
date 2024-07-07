@@ -6,6 +6,9 @@ export default defineConfig({
     base: 'moodle_app',
     build: {
         outDir: 'dist',
+        rollupOptions: {
+            input: './index.html',
+        }
     },
     plugins: [
         laravel({
